@@ -21,7 +21,7 @@
             <form method="POST" action="{{ route('plant.save') }}">
               @csrf
               <input type="text" class="form-control mb-2" placeholder="Enter the name of the plant" name="name" value="{{ old('name') }}" />
-              <input type="text-area" class="form-control mb-2" placeholder="Enter the description of the plant" name="description" value="{{ old('description') }}" />
+              <input type="textarea" class="form-control mb-2" placeholder="Enter the description of the plant" name="description" value="{{ old('description') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter the image url of the plant" name="imageUrl" value="{{ old('imageUrl') }}" />
               <input type="number" class="form-control mb-2" placeholder="Enter the price of the plant" name="price" value="{{ old('price') }}" />
               <input type="number" class="form-control mb-2" placeholder="Enter the stock of the plant" name="stock" value="{{ old('stock') }}" />
