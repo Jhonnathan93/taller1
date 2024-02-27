@@ -45,8 +45,8 @@ class PlantController extends Controller
             'name' => 'required',
             'description' => 'required',
             'imageUrl' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'stock' => 'required|numeric|gte:0',
         ]);
     }
 
