@@ -6,6 +6,7 @@ use App\Models\Plant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PlantController extends Controller
 {
@@ -49,7 +50,7 @@ class PlantController extends Controller
         ]);
     }
 
-    public function save(Request $request): \Illuminate\Http\RedirectResponse
+    public function save(Request $request): RedirectResponse
     {
         $validatedData = $this->validatePlantRequest($request);
 
@@ -61,7 +62,7 @@ class PlantController extends Controller
 
     }
 
-    public function delete(string $id): \Illuminate\Http\RedirectResponse
+    public function delete(string $id): RedirectResponse
     {
         Plant::destroy($id);
 
