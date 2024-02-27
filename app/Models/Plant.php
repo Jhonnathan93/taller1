@@ -10,13 +10,15 @@ class Plant extends Model
     use HasFactory;
 
     /**
-     * PRODUCT ATTRIBUTES
+     * PLANT ATTRIBUTES
      * $this->attributes['id'] - int - contains the plant primary key (id)
      * $this->attributes['name'] - string - contains the plant name
      * $this->attributes['description'] - text - contains the plant description
      * $this->attributes['imageUrl'] - string - contains the url of the plant image
      * $this->attributes['price'] - int - contains the plant price
      * $this->attributes['stock'] - int - contains the remain stock units of the plant
+     * $this->attributes['created_at] - timestamp - timestamp indicating plant creation
+     * $this->attributes['updated_at] - timestamp - timestamp indicating last plant update
      */
     protected $fillable = ['name', 'description', 'imageUrl', 'price', 'stock'];
 
@@ -78,5 +80,25 @@ class Plant extends Model
     public function setStock(int $stock): void
     {
         $this->attributes['stock'] = $stock;
+    }
+
+    public function getCreated_at(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function setCreated_at(string $createdAt): void
+    {
+        $this->attributes['created_at'] = $createdAt;
+    }
+
+    public function getUpdated_at(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
+    public function setUpdated_at(string $updatedAt): void
+    {
+        $this->attributes['updated_at'] = $updatedAt;
     }
 }

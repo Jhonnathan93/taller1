@@ -5,16 +5,16 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{ $viewData["plant"]->imageUrl }}" class="img-fluid rounded-start">
+      <img src="{{ $viewData["plant"]->getImageUrl() }}" class="img-fluid rounded-start">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{ $viewData["plant"]->name }}</h5>
-        <p class="card-text">ID: {{ $viewData["plant"]->id }}</p>
-        <p class="card-text">Description: {{ $viewData["plant"]->description }}</p>
-        <p class="card-text">Price: ${{ $viewData["plant"]->price }}</p>
-        <p class="card-text">Remaining Stock: {{ $viewData["plant"]->stock }} units</p>
-        <form method="POST" action="{{ route('plant.delete', ['id' => $viewData["plant"]->id]) }}" onsubmit="return confirm('Are you sure you want to delete this plant?')">
+        <h5 class="card-title">{{ $viewData["plant"]->getName() }}</h5>
+        <p class="card-text">ID: {{ $viewData["plant"]->getId() }}</p>
+        <p class="card-text">Description: {{ $viewData["plant"]->getDescription() }}</p>
+        <p class="card-text">Price: ${{ $viewData["plant"]->getPrice() }}</p>
+        <p class="card-text">Remaining Stock: {{ $viewData["plant"]->getStock() }} units</p>
+        <form method="POST" action="{{ route('plant.delete', ['id' => $viewData["plant"]->getId()]) }}" onsubmit="return confirm('Are you sure you want to delete this plant?')">
           @csrf
           @method('DELETE')
           <button type="submit" class="btn btn-danger">Delete Plant</button>

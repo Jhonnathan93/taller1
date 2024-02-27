@@ -12,7 +12,7 @@ class PlantController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'plants - Online Store';
+        $viewData['title'] = 'Plants - Online Store';
         $viewData['subtitle'] = 'List of plants';
         $viewData['plants'] = Plant::all();
 
@@ -32,21 +32,27 @@ class PlantController extends Controller
 
     public function create(): View
     {
-        $viewData = []; //to be sent to the view
+        $viewData = [];
         $viewData['title'] = 'Create plant';
 
         return view('plant.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request)
+    private function validatePlantRequest(Request $request): array
     {
-        $request->validate([
+        return $request->validate([
             'name' => 'required',
             'description' => 'required',
             'imageUrl' => 'required',
             'price' => 'required',
             'stock' => 'required',
         ]);
+    }
+
+    public function save(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $validatedData = $this->validatePlantRequest($request);
+
         Plant::create($request->only(['name', 'description', 'imageUrl', 'price', 'stock']));
 
         Session::flash('success', 'Element created successfully.');
@@ -55,10 +61,9 @@ class PlantController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete(string $id): \Illuminate\Http\RedirectResponse
     {
-        $plant = Plant::findOrFail($id);
-        $plant->delete();
+        Plant::destroy($id);
 
         Session::flash('success', 'Plant deleted successfully.');
 
