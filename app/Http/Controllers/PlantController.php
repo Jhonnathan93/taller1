@@ -22,12 +22,12 @@ class PlantController extends Controller
 
     public function show(string $id): View
     {
-        $viewData = [];
         $plant = Plant::findOrFail($id);
-        $viewData['title'] = $plant['name'].' - Online Store';
-        $viewData['subtitle'] = $plant['name'].' - Plant information';
-        $viewData['plant'] = $plant;
-
+        $viewData = [
+            'title' => $plant->getName() . ' - Online Store',
+            'subtitle' => $plant->getName() . ' - Plant information',
+            'plant' => $plant,
+        ];
         return view('plant.show')->with('viewData', $viewData);
     }
 
