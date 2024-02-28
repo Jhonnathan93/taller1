@@ -17,8 +17,8 @@ class Plant extends Model
      * $this->attributes['imageUrl'] - string - contains the url of the plant image
      * $this->attributes['price'] - int - contains the plant price
      * $this->attributes['stock'] - int - contains the remain stock units of the plant
-     * $this->attributes['created_at] - timestamp - timestamp indicating plant creation
-     * $this->attributes['updated_at] - timestamp - timestamp indicating last plant update
+     * $this->attributes['created_at'] - timestamp - timestamp indicating plant creation
+     * $this->attributes['updated_at'] - timestamp - timestamp indicating last plant update
      */
     protected $fillable = ['name', 'description', 'imageUrl', 'price', 'stock'];
 
