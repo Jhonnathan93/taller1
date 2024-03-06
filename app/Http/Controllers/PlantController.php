@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Plant;
 use App\Util\UserDataValidation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class PlantController extends Controller
 {
@@ -25,8 +25,8 @@ class PlantController extends Controller
     {
         $plant = Plant::findOrFail($id);
         $viewData = [];
-        $viewData['title'] = $plant->getName() . ' - Online Store';
-        $viewData['subtitle'] = $plant->getName() . ' - Plant information';
+        $viewData['title'] = $plant->getName().' - Online Store';
+        $viewData['subtitle'] = $plant->getName().' - Plant information';
         $viewData['plant'] = $plant;
 
         return view('plant.show')->with('viewData', $viewData);
@@ -43,7 +43,7 @@ class PlantController extends Controller
     public function save(Request $request): RedirectResponse
     {
         $validator = new UserDataValidation();
-    
+
         $validatedData = $validator->validatePlantRequest($request);
 
         Plant::create($validatedData);
