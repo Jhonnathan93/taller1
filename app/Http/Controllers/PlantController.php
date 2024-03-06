@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use App\Util\UserDataValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -23,11 +24,11 @@ class PlantController extends Controller
     public function show(string $id): View
     {
         $plant = Plant::findOrFail($id);
-        $viewData = [
-            'title' => $plant->getName() . ' - Online Store',
-            'subtitle' => $plant->getName() . ' - Plant information',
-            'plant' => $plant,
-        ];
+        $viewData = [];
+        $viewData['title'] = $plant->getName() . ' - Online Store';
+        $viewData['subtitle'] = $plant->getName() . ' - Plant information';
+        $viewData['plant'] = $plant;
+
         return view('plant.show')->with('viewData', $viewData);
     }
 
@@ -39,22 +40,13 @@ class PlantController extends Controller
         return view('plant.create')->with('viewData', $viewData);
     }
 
-    private function validatePlantRequest(Request $request): array
-    {
-        return $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'imageUrl' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'stock' => 'required|numeric|gte:0',
-        ]);
-    }
-
     public function save(Request $request): RedirectResponse
     {
-        $validatedData = $this->validatePlantRequest($request);
+        $validator = new UserDataValidation();
+    
+        $validatedData = $validator->validatePlantRequest($request);
 
-        Plant::create($request->only(['name', 'description', 'imageUrl', 'price', 'stock']));
+        Plant::create($validatedData);
 
         Session::flash('success', 'Element created successfully.');
 

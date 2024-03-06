@@ -27,11 +27,6 @@ class Plant extends Model
         return $this->attributes['id'];
     }
 
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
-    }
-
     public function getName(): string
     {
         return $this->attributes['name'];
@@ -87,18 +82,8 @@ class Plant extends Model
         return $this->attributes['created_at'];
     }
 
-    public function setCreated_at(string $createdAt): void
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-
-    public function getUpdated_at(): string
+    public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
-    }
-
-    public function setUpdated_at(string $updatedAt): void
-    {
-        $this->attributes['updated_at'] = $updatedAt;
     }
 }
